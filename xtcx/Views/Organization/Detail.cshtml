@@ -1,0 +1,100 @@
+﻿@model xtcx.ViewModel.OrganizationViewModel
+@{
+    ViewBag.Title = "中心简介";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.Partial("_SideBar2")
+
+<div id="page-wrapper">
+    <div class="row">
+        <ol class="breadcrumb row">
+            <li><a class="cx-fontgreen" href="/home"><span class="glyphicon glyphicon-home"></span> 首页</a></li>
+            <li><a class="cx-fontgreen" href="/organization/"> 案例库</a></li>
+            <li><a class="cx-fontgreen" href="#">案例中心详情</a></li>
+        </ol>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div class="col-lg-12">
+                <h2 class="page-header">@Model.Name (<a href="@Model.Url" class="font-green" target="_blank">@Model.Url</a>)</h1>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-md-12">
+            <div class="col-lg-12">
+                <h1 class="page-header">面向科学前沿</h1>
+            </div>
+            <div class="col-lg-12">
+                <div class="panel panel-green">
+                    <div class="panel-heading cx-pdtop-30"></div>
+                    <div class="panel-body cx-panel-body">
+                        <p>
+                            @Html.DisplayFor(m=>m.ScienceDesc)
+                        </p>
+                    </div>
+                    <div class="panel-footer cx-pdtop-30"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-md-12">
+            <div class="col-lg-12">
+                <h1 class="page-header">面向行业产业</h1>
+            </div>
+            <!-- /.col-lg-6 -->
+            <div class="col-lg-12">
+                <div class="panel panel-green">
+                    <div class="panel-heading cx-pdtop-30"></div>
+                    <div class="panel-body cx-panel-body">
+                        <p>
+                            @Html.DisplayFor(m => m.IndustryDesc)
+                        </p>
+                    </div>
+                    <div class="panel-footer cx-pdtop-30"></div>
+                </div>
+            </div>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-6 col-md-12">
+            <div class="col-lg-12">
+                <h1 class="page-header">面向区域发展</h1>
+            </div>
+            <div class="col-lg-12">
+                <div class="panel panel-green">
+                    <div class="panel-heading cx-pdtop-30"></div>
+                    <div class="panel-body cx-panel-body">
+                        <p>
+                            @Html.DisplayFor(m => m.DomainDesc)
+                        </p>
+                    </div>
+                    <div class="panel-footer cx-pdtop-30"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-md-12">
+            <div class="col-lg-12">
+                <h1 class="page-header">面向文化传承</h1>
+            </div>
+            <!-- /.col-lg-6 -->
+            <div class="col-lg-12">
+                <div class="panel panel-green">
+                    <div class="panel-heading cx-pdtop-30"></div>
+                    <div class="panel-body cx-panel-body">
+                        <p>
+                            @Html.DisplayFor(m => m.CultureDesc)
+                        </p>
+                    </div>
+                    <div class="panel-footer cx-pdtop-30"></div>
+                </div>
+            </div>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+</div>

@@ -1,0 +1,87 @@
+﻿@model xtcx.ViewModel.RegisterViewModel
+@{
+    ViewBag.Title = "注册";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title -协同创新数据库</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+
+    <video autoplay="autoplay" muted="muted" loop="loop" class="cx-video">
+        <source src="/content/img/login.mp4"></source>
+    </video>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="login-panel panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">注册账户</h3>
+                    </div>
+                    <div class="panel-body">
+                        @using (Html.BeginForm("Register", "Account", new { referral = Request.QueryString["referral"] }, FormMethod.Post, new { role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            if (!ViewData.ModelState.IsValid)
+                            {
+                                <div class="alert alert-danger">
+                                    @Html.ValidationSummary()
+                                </div>
+                            }
+                            if (ViewBag.ActionMessage != null)
+                            {
+                                <div class="alert alert-success">
+                                    @ViewBag.ActionMessage
+                                </div>
+                            }
+                            <fieldset>
+                                <div class="form-group">
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", type = "email", maxlength = "30", placeholder = "请输入邮箱地址" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "请输入登录密码", maxlength = "30" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", placeholder = "请输入确认密码", maxlength = "30" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "您的姓名", maxlength = "30" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", placeholder = "您的手机号", maxlength = "30" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.TextBoxFor(m => m.Address, new { @class = "form-control", placeholder = "联系地址", maxlength = "30" })
+                                </div>
+                                <div class="form-group">                                    
+                                    <select class="form-control" placeholder="选择身份" name="MemberType">
+                                        <option value="中心人员">中心人员</option>
+                                        <option value="研究人员">研究人员</option>
+                                        <option value="政府人员">政府人员</option>
+                                        <option value="其他">其他</option>
+                                    </select>
+                                </div>
+                                <!-- Change this to a button or input when using this as a form -->
+                                <button type="submit" class="btn btn-lg btn-success btn-block">注册</button>
+                            </fieldset>
+                        }
+                        <div class="cx-loginfont">
+                            <span class="pull-right cx-pdtop-10"><a href="/account/login">已有账户，点我登陆！</a></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/bootstrap")
+
+</body>
+</html>

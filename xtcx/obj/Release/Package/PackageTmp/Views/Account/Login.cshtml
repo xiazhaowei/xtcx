@@ -1,0 +1,73 @@
+﻿@model xtcx.ViewModel.LoginViewModel
+@{
+    ViewBag.Title = "登录";
+    Layout = null;
+    if (ViewBag.ReturnUrl == null)
+    {
+        ViewBag.ReturnUrl = "~/Home/Index";
+    }
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title -协同创新数据库</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+
+    <video autoplay="autoplay" muted="muted" loop="loop" class="cx-video">
+        <source src="/content/img/login.mp4"></source>
+    </video>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="login-panel panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">请登陆您的账户</h3>
+                    </div>
+                    <div class="panel-body">
+                        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            if (!ViewData.ModelState.IsValid)
+                            {
+                                <div class="alert alert-danger">
+                                    @Html.ValidationSummary()
+                                </div>
+                            }
+                        
+                            <fieldset>
+                                <div class="form-group">                                    
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "邮箱", type = "email", maxlength = "30" })
+                                </div>
+                                <div class="form-group">                                    
+                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "密码", maxlength = "20" })
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input name="remember" type="checkbox" value="Remember Me">记住我
+                                    </label>
+                                </div>
+                                <!-- Change this to a button or input when using this as a form -->                                
+                                <button type="submit" class="btn btn-lg btn-success btn-block">登录</button>
+                            </fieldset>
+                        
+                        }
+                        <div class="cx-loginfont">
+                            <span class="pull-left cx-pdtop-10"><a href="/account/repass">忘记密码？</a></span>
+                            <span class="pull-right cx-pdtop-10"><a href="/account/register">还没有账户，点我注册！</a></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+
+    @Scripts.Render("~/bundles/bootstrap")
+    
+</body>
+</html>

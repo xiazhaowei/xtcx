@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4cef9292203d482d8a68ae36e935f016" Name="Diagram1">
+        <EntityTypeShape EntityType="Models.Member" Width="1.5" PointX="2" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Models.Organization" Width="1.5" PointX="5.375" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="Models.MemberOrganization" />
+        <EntityTypeShape EntityType="Models.Case" Width="1.5" PointX="10" PointY="1.625" />
+        <AssociationConnector Association="Models.OrganizationCase" />
+        <EntityTypeShape EntityType="Models.Policy" Width="1.5" PointX="8.125" PointY="3.625" />
+        <AssociationConnector Association="Models.OrganizationPolicy" />
+        <EntityTypeShape EntityType="Models.Performance" Width="1.5" PointX="5" PointY="5.5" />
+        <AssociationConnector Association="Models.OrganizationPerformance" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Models" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Member">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MemberType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Organizations" Relationship="Models.MemberOrganization" FromRole="Member" ToRole="Organization" />
+    <Property Name="RegTime" Type="DateTime" Nullable="false" />
+    <Property Name="State" Type="String" Nullable="false" MaxLength="50" />
+    <Property Name="WorkingPlace" Type="String" MaxLength="50" Nullable="true" />
+    <Property Name="Type" Type="String" Nullable="false" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="Organization">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Url" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ScienceDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IndustryDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="DomainDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CultureDesc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Views" Type="Int32" />
+    <NavigationProperty Name="Member" Relationship="Models.MemberOrganization" FromRole="Organization" ToRole="Member" />
+    <Property Name="MemberId" Type="Int32" Nullable="false" />
+    <Property Name="CreateTime" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="Cases" Relationship="Models.OrganizationCase" FromRole="Organization" ToRole="Case" />
+    <NavigationProperty Name="Policies" Relationship="Models.OrganizationPolicy" FromRole="Organization" ToRole="Policy" />
+    <NavigationProperty Name="Performances" Relationship="Models.OrganizationPerformance" FromRole="Organization" ToRole="Performance" />
+    <Property Name="State" Type="String" Nullable="false" MaxLength="20" />
+  </EntityType>
+  <EntityContainer Name="xtcxEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Members" EntityType="Self.Member" />
+    <EntitySet Name="Organizations" EntityType="Self.Organization" />
+    <AssociationSet Name="MemberOrganization" Association="Models.MemberOrganization">
+      <End Role="Member" EntitySet="Members" />
+      <End Role="Organization" EntitySet="Organizations" />
+    </AssociationSet>
+    <EntitySet Name="Cases" EntityType="Models.Case" />
+    <AssociationSet Name="OrganizationCase" Association="Models.OrganizationCase">
+      <End Role="Organization" EntitySet="Organizations" />
+      <End Role="Case" EntitySet="Cases" />
+    </AssociationSet>
+    <EntitySet Name="Policies" EntityType="Models.Policy" />
+    <AssociationSet Name="OrganizationPolicy" Association="Models.OrganizationPolicy">
+      <End Role="Organization" EntitySet="Organizations" />
+      <End Role="Policy" EntitySet="Policies" />
+    </AssociationSet>
+    <EntitySet Name="Performances" EntityType="Models.Performance" />
+    <AssociationSet Name="OrganizationPerformance" Association="Models.OrganizationPerformance">
+      <End Role="Organization" EntitySet="Organizations" />
+      <End Role="Performance" EntitySet="Performances" />
+    </AssociationSet>
+  </EntityContainer>
+  <Association Name="MemberOrganization">
+    <End Type="Models.Member" Role="Member" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="Models.Organization" Role="Organization" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Member">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Organization">
+        <PropertyRef Name="MemberId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Case">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" />
+    <Property Name="Description" Type="String" Nullable="false" />
+    <Property Name="FilePath" Type="String" Nullable="false" MaxLength="50" />
+    <Property Name="State" Type="String" Nullable="false" MaxLength="50" />
+    <Property Name="CreateTime" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="Organization" Relationship="Models.OrganizationCase" FromRole="Case" ToRole="Organization" />
+    <Property Name="OrganizationId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="OrganizationCase">
+    <End Type="Models.Organization" Role="Organization" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="Models.Case" Role="Case" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Organization">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Case">
+        <PropertyRef Name="OrganizationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Policy">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" />
+    <Property Name="Description" Type="String" Nullable="false" />
+    <Property Name="FilePath" Type="String" Nullable="false" MaxLength="50" />
+    <Property Name="State" Type="String" Nullable="false" MaxLength="50" />
+    <Property Name="CreateTime" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="Organization" Relationship="Models.OrganizationPolicy" FromRole="Policy" ToRole="Organization" />
+    <Property Name="OrganizationId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="OrganizationPolicy">
+    <End Type="Models.Organization" Role="Organization" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="Models.Policy" Role="Policy" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Organization">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Policy">
+        <PropertyRef Name="OrganizationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Performance">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" />
+    <Property Name="Description" Type="String" Nullable="false" />
+    <Property Name="FilePath" Type="String" Nullable="false" MaxLength="50" />
+    <Property Name="State" Type="String" Nullable="false" MaxLength="50" />
+    <Property Name="CreateTime" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="Organization" Relationship="Models.OrganizationPerformance" FromRole="Performance" ToRole="Organization" />
+    <Property Name="OrganizationId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="OrganizationPerformance">
+    <End Type="Models.Organization" Role="Organization" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="Models.Performance" Role="Performance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Organization">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Performance">
+        <PropertyRef Name="OrganizationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

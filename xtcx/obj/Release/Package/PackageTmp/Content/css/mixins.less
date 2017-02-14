@@ -1,0 +1,276 @@
+@font-green:#5CB85C;
+@font-green-d:#0C6734;
+@font-gray:#888;
+@font-gray-lin:#c0c0c0;
+@font-gray-footer:#F8F8F8;
+
+
+body,h1, h2, h3, h4, h5, h6, .h4, p,div, dt,dd,a{
+    font-family: "Microsoft Yahei", "Helvetica Neue", Arial, sans-serif; 
+}
+
+h1, h2, h3, h4, h5, h6{
+    font-weight: 100;
+}
+
+.text-red{
+    color:#f00;
+}
+
+.generate-cx-pdtop(15,1);
+
+.generate-cx-pdtop(@n, @i: 1) when (@i =< @n) {
+  @c:@i*5;
+  .cx-pdtop-@{c} {
+    padding-top: (@i * 5px);
+  }
+  .generate-cx-pdtop(@n, (@i + 1));
+}
+
+.generate-cx-pdbottom(15,1);
+
+.generate-cx-pdbottom(@n, @i: 1) when (@i =< @n) {
+  @c:@i*5;
+  .cx-pdbottom-@{c} {
+    padding-bottom: (@i * 5px);
+  }
+  .generate-cx-pdbottom(@n, (@i + 1));
+}
+
+.generate-cx-mgleft(15,1);
+
+.generate-cx-mgleft(@n, @i: 1) when (@i =< @n) {
+  @c:@i*5;
+  .cx-mgleft-@{c} {
+    margin-left: (@i * 5px);
+  }
+  .generate-cx-mgleft(@n, (@i + 1));
+}
+
+.cx-loginbgimg{
+    
+}
+.cx-video{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-height: 100%;
+    min-width: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1000;
+}
+.cx-loginfont{
+    span > a {
+        color: @font-green !important;
+    }
+    
+}
+
+.login-panel {
+  @media screen {
+    @media (min-width: 992px) {
+      margin-top: 55%;
+    }
+    @media (max-width: 992px) {
+      margin-top: 20%;
+    }
+  }
+}
+
+.panel-body > p {
+    text-indent: 2em;
+}
+
+.cx-navbar{
+    height: 65px;
+}
+
+.cx-navbar-brand{
+    padding-top: 4px;
+    > span > div {
+        font-size: 1.5em;
+        float: right;
+        padding-left: 10px;
+        padding-top: 22px;
+       
+    }
+}
+
+#navbar-top-list{
+    @media screen {
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+}
+
+
+
+.cx-logo{
+    margin-left: 30px;
+    width: 50px;
+    height: 54px;
+    float: left;
+}
+.cx-fontgreen{
+    color: @font-green;
+}
+
+.cx-fontgrey{
+    color: @font-gray;
+}
+
+.cx-sidebar{
+    
+    ul > li > a {
+        height: 65px;
+        font-size: 1.4em;
+        color: @font-green;
+        padding: 20px 22px;
+    } 
+}
+
+.cx-sidebar{
+    @media screen {
+    @media (max-width: 768px) {
+      margin-top: 14px;
+    }
+  }
+}
+
+.cx-dropdown-font{
+    color: @font-green;
+    a:hover{
+        color: @font-green;
+    }
+    a {
+        color: @font-green;
+    }
+    > ul > li > a {
+        color: @font-green;
+    }
+}
+
+.cx-panel-body{
+    height: 150px;
+    overflow-y: auto;
+    text-indent: 2em;
+    white-space: normal !important;
+}
+
+.cx-downlist-table{
+    tbody > tr > td {
+        white-space: normal !important;
+    }
+}
+
+.cx-panel-body::-webkit-scrollbar {  
+  width: 14px;  
+  height: 14px;  
+}  
+  
+.cx-panel-body::-webkit-scrollbar-track,  
+.cx-panel-body::-webkit-scrollbar-thumb {  
+  border-radius: 999px;  
+  border: 5px solid transparent;  
+}  
+  
+.cx-panel-body::-webkit-scrollbar-track {  
+  box-shadow: 1px 1px 5px rgba(0,0,0,.2) inset;  
+}  
+  
+.cx-panel-body::-webkit-scrollbar-thumb {  
+  min-height: 20px;  
+  background-clip: content-box;  
+  box-shadow: 0 0 0 5px rgba(0,0,0,.2) inset;  
+}  
+  
+.cx-panel-body::-webkit-scrollbar-corner {  
+  background: transparent;  
+}  
+.cx-table{
+    table > tbody >　tr > td {
+        text-align: center;
+        vertical-align: middle;
+    }
+    
+    table > tbody >　tr > td+td {
+        width: 23%;
+        border-left: 1px solid @font-gray-lin;
+    }
+    table > tbody > tr > td:last-child{
+        text-align: inherit;
+    }
+    
+}
+
+.cx-textarea{
+    resize: none;
+    height: 60px !important;
+}
+.cx-textarea-add{
+    resize: none;
+    height: 150px !important;
+}
+
+.cx-downlist-table{
+    tbody >　tr > td {
+        text-align: center;
+        vertical-align: middle;
+        height: 60px;
+    }
+    
+    tbody >　tr > td+td {
+        text-align: inherit;
+        vertical-align: inherit;
+    }
+    tbody > tr > td:last-child{
+        text-indent: 0em;
+        text-align: center;
+        vertical-align: middle;
+        width: 100px;
+    }
+}
+.cx-textindent{
+    text-indent: 2em;
+}
+
+#page-wrapper{
+    min-height: 899px;
+}
+
+.cx-nav-footer{
+    color: @font-gray;
+    float: right;
+    bottom: 0;
+    background-color: @font-gray-footer;
+    height: 60px;
+    width: 100%;
+    text-align: center;
+    vertical-align: middle;
+}
+
+
+.cx-fileinput {
+    position: relative;
+    display: inline-block;
+    border-radius: 4px;
+    padding: 4px 12px;
+    overflow: hidden;
+    text-decoration: none;
+    text-indent: 0;
+    line-height: 20px;
+}
+.cx-fileinput input {
+    cursor: pointer;
+    position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+    opacity: 0;
+}
+.cx-fileinput:hover {
+    cursor: pointer;
+    text-decoration: none;
+}

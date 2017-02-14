@@ -1,0 +1,162 @@
+﻿@model xtcx.ViewModel.OrganizationViewModel
+@{
+    ViewBag.Title = "添加机构";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.Partial("_SideBar3")
+
+<div id="page-wrapper" class="cx-pdtop-50">
+
+    <div class="row">
+        <ol class="breadcrumb row">
+            <li><a class="cx-fontgreen" href="/home"><span class="glyphicon glyphicon-home"></span> 首页</a></li>
+            <li><a class="cx-fontgreen" href="/organization/"> 案例库</a></li>
+            <li><a class="cx-fontgreen" href="#"></span> 添加中心</a></li>
+        </ol>
+    </div>
+
+    @using (Html.BeginForm("Add", "Organization", FormMethod.Post, new { role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+        if (!ViewData.ModelState.IsValid)
+        {
+            <div class="alert alert-danger">
+                @Html.ValidationSummary()
+            </div>
+        }
+        if (ViewBag.ActionMessage != null)
+        {
+            <div class="alert alert-success">
+                @ViewBag.ActionMessage
+            </div>
+        }
+
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="panel panel-green">
+                    <div class="panel-heading">
+                        基本信息录入
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12">
+
+                                <div class="col-lg-2 form-group">
+                                    <label class="cx-form-font cx-pdtop-5">中心名称 ：<span class="text-red">*</span></label>
+                                </div>
+                                <div class="col-lg-10 form-group">
+                                    @Html.HiddenFor(m => m.Id)
+                                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control", type = "text", placeholder = "中心名称" })
+                                </div>
+                                <div class="col-lg-2 form-group">
+                                    <label class="cx-form-font cx-pdtop-5">中心网址：</label>
+                                </div>
+                                <div class="col-lg-10 form-group">
+                                    @Html.TextBoxFor(m => m.Url, new { @class = "form-control", type = "text", placeholder = "中心网址" })
+                                </div>
+                                <div class="col-lg-2 form-group">
+                                    <label class="cx-form-font cx-pdtop-5">中心简介 ：<span class="text-red">*</span></label>
+                                </div>
+                                <div class="col-lg-10 form-group">
+                                    @Html.TextAreaFor(m=>m.Description,new {@class="form-control",placeholder="中心简介" })                                    
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer cx-pdtop-20">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6">
+                <div class="panel panel-green">
+                    <div class="panel-heading">
+                        面向科学前沿
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12">
+
+                                <div class="form-group">
+                                    @Html.TextAreaFor(m => m.ScienceDesc, new { @class = "form-control cx-form-add cx-textarea-add cx-panel-body", placeholder = "输入本中心面向科学前沿信息" })   
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer cx-pdtop-20">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <div class="panel panel-green">
+                    <div class="panel-heading">
+                        面向行业产业
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12">
+
+                                <div class="form-group">
+                                    @Html.TextAreaFor(m => m.IndustryDesc, new { @class = "form-control cx-form-add cx-textarea-add cx-panel-body", placeholder = "输入本中心面向行业产业信息" })  
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer cx-pdtop-20">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <div class="panel panel-green">
+                    <div class="panel-heading">
+                        面向区域发展
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12">
+
+                                <div class="form-group">
+                                    @Html.TextAreaFor(m => m.DomainDesc, new { @class = "form-control cx-form-add cx-textarea-add cx-panel-body", placeholder = "输入本中心面向区域发展信息" })
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer cx-pdtop-20">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <div class="panel panel-green">
+                    <div class="panel-heading">
+                        面向文化传承
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12">
+
+                                <div class="form-group">
+                                    @Html.TextAreaFor(m => m.CultureDesc, new { @class = "form-control cx-form-add cx-textarea-add cx-panel-body", placeholder = "输入本中心面向文化传承信息" })
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer cx-pdtop-20">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 cx-pdbottom-20 text-center">
+                <button type="submit" class="btn btn-success text-center">确认保存信息</button>
+                <button type="reset" class="btn btn-default text-center cx-mgleft-20">取消重填</button>
+            </div>
+        </div>
+
+    }
+</div>
+

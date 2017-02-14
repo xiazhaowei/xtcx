@@ -1,0 +1,49 @@
+﻿@using xtcx.Models
+@model IEnumerable<Organization>
+@{
+    ViewBag.Title = "案例中心";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@Html.Partial("_SideBar1")
+
+<div id="page-wrapper">
+    <div class="row">
+        <ol class="breadcrumb row">
+            <li><a class="cx-fontgreen" href="/home"><span class="glyphicon glyphicon-home"></span> 首页</a></li>
+            <li><a class="cx-fontgreen" href="#"> 案例库</a></li>            
+        </ol>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">现有案例中心展示<a href="/organization/add" class="btn btn-success text-center pull-right"><span class="glyphicon glyphicon-plus"></span> 添加新的案例</a></h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-lg-4">
+                <div class="panel panel-green">
+                    <div class="panel-heading">
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </div>
+                    <div class="panel-body cx-panel-body">
+                        <p>@Html.DisplayFor(modelItem => item.Description)</p>
+                    </div>
+                    <a href="/organization/detail/@item.Id ">
+                        <div class="panel-footer text-center">
+                            点击查看
+                        </div>
+                    </a>
+                </div>
+            </div>
+        }
+        
+    </div>
+
+</div>
+

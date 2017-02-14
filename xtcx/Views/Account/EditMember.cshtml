@@ -1,0 +1,111 @@
+﻿@model xtcx.Models.Member
+@{
+    ViewBag.Title = "个人资料编辑";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@Html.Partial("_SideBar1")
+
+<div id="page-wrapper" class="cx-pdtop-50">
+
+    <div class="row">
+        <ol class="breadcrumb row">
+            <li><a class="cx-fontgreen" href="/home"><span class="glyphicon glyphicon-home"></span> 首页</a></li>
+            <li><a class="cx-fontgreen" href="/account/membermgr"> 用户管理</a></li>
+            <li><a class="cx-fontgreen" href="#"></span> 编辑个人资料</a></li>
+        </ol>
+    </div>
+
+    <div class="row cx-pdtop-50">
+        <div class="col-lg-12 col-md-12">
+            <div class="panel panel-green">
+                <div class="panel-heading">
+                    用户基本信息
+                </div>
+                <div class="panel-body">
+                    @using (Html.BeginForm("EditMember", "Account", FormMethod.Post, new { role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        if (!ViewData.ModelState.IsValid)
+                        {
+                            <div class="alert alert-danger">
+                                @Html.ValidationSummary()
+                            </div>
+                        }
+                        if (ViewBag.ActionMessage != null)
+                        {
+                            <div class="alert alert-success">
+                                @ViewBag.ActionMessage
+                            </div>
+                        }
+                        <div class="row">                            
+                            <div class="col-lg-6 col-md-12">
+                                <div class="col-lg-3 form-group">
+                                    <label class="cx-form-font cx-pdtop-5">用户账户：</label>
+                                </div>
+                                <div class="col-lg-9 form-group">
+                                    @Html.HiddenFor(m=>m.Id)
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @readonly = "readonly", type = "email", maxlength = "30", placeholder = "请输入邮箱地址" })
+                                </div>
+                                <div class="col-lg-3 form-group">
+                                    <label class="cx-form-font cx-pdtop-5">密码：</label>
+                                </div>
+                                <div class="col-lg-9 form-group">
+                                    @Html.TextBoxFor(m => m.Password, new { @class = "form-control", placeholder = "请输入密码" })
+                                </div>
+                                <div class="col-lg-3 form-group">
+                                    <label class="cx-form-font cx-pdtop-5">用户姓名：</label>
+                                </div>
+                                <div class="col-lg-9 form-group">
+                                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "请输入用户名" })
+                                </div>
+                                <div class="col-lg-3 form-group">
+                                    <label class="cx-form-font cx-pdtop-5">联系方式：</label>
+                                </div>
+                                <div class="col-lg-9 form-group">
+                                    @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", placeholder = "请输入联系电话" })
+                                </div>
+                                <div class="col-lg-3 form-group">
+                                    <label class="cx-form-font cx-pdtop-5">联系地址：</label>
+                                </div>
+                                <div class="col-lg-9 form-group">
+                                    @Html.TextBoxFor(m => m.Address, new { @class = "form-control", placeholder = "请输入联系地址" })
+                                </div>
+                                <div class="col-lg-3 form-group">
+                                    <label class="cx-form-font cx-pdtop-5">选择身份：</label>
+                                </div>
+                                <div class="col-lg-9 form-group">
+                                    <select name="MemberType" class="form-control" placeholder="选择身份" name="MemberType">
+                                        <option value="中心人员">中心人员</option>
+                                        <option value="研究人员">研究人员</option>
+                                        <option value="政府人员">政府人员</option>
+                                        <option value="其他">其他</option>
+                                    </select>
+                                </div>
+                                <div class="col-lg-3 form-group">
+                                    <label class="cx-form-font cx-pdtop-5">用户角色：</label>
+                                </div>
+                                <div class="col-lg-9 form-group">
+                                    <select name="Type" class="form-control" placeholder="选择角色" name="MemberType">
+                                        <option value="用户">网站用户</option>
+                                        <option value="管理员">网站管理员</option>
+                                    </select>
+                                </div>
+                            </div> 
+                        </div>
+                    
+
+                    <div class="col-lg-12 col-md-12 text-right">
+                        <button type="submit" class="btn btn-success text-center">保存用户信息</button>
+                        <button type="reset" class="btn btn-default text-center cx-mgleft-15">取消重填</button>
+                    </div>
+                    }
+
+                </div>
+                <div class="panel-footer cx-pdtop-20">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

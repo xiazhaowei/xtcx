@@ -1,0 +1,88 @@
+﻿@model IQueryable<xtcx.Models.Case>
+@{
+    ViewBag.Title = "典型案例";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.Partial("_SideBar2")
+
+
+<div id="page-wrapper">
+    <div class="row">
+        <ol class="breadcrumb row">
+            <li><a class="cx-fontgreen" href="/home"><span class="glyphicon glyphicon-home"></span> 首页</a></li>
+            <li><a class="cx-fontgreen" href="/organization/"> 案例库</a></li>
+            <li><a class="cx-fontgreen" href="#">案例列表</a></li>
+        </ol>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">典型案例查看</h1>
+        </div>
+        <div class="col-lg-12 col-md-12">
+            <div class="panel panel-green">
+                <div class="panel-heading  cx-pdtop-30"></div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="table-responsive cx-table">
+                        <table class="table table-hover cx-table-left-boder">
+                            <thead>
+                                <tr>
+                                    <th width="50">#</th>
+                                    <th width="150">案例名称</th>
+                                    <th>内容摘要</th>
+                                    <th width="100">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                                        <td>
+                                            <div class="cx-panel-body">
+                                                @Html.DisplayFor(modelItem => item.Description)
+                                            </div>
+                                        </td>
+                                        <td><a href="#" target="_blank" data-toggle="modal" data-target="#filedown">预览</a></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.table-responsive -->
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" id="filedown" aria-labelledby="filedown" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">通知</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form role="form">
+                            <fieldset>
+                                <p>
+                                    未开放下载！
+                                </p>
+                                <!-- Change this to a button or input when using this as a form -->
+                                <a href="" class="btn btn-lg btn-success btn-block">确定</a>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

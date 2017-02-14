@@ -1,0 +1,136 @@
+﻿body,h1, h2, h3, h4, h5, h6, .h4, p,div, dt,dd,a{
+    font-family: "Microsoft Yahei", "Helvetica Neue", Arial, sans-serif; 
+}
+
+h1, h2, h3, h4, h5, h6{
+    font-weight: 100;
+}
+
+
+
+//生成wd
+.generate-wd(12,1);
+
+.generate-wd(@n, @i: 1) when (@i =< @n) {
+  @c:@i*50;
+  .wd-@{c} {
+    width: (@i * 50px );
+  }
+  .generate-wd(@n, (@i + 1));
+}
+
+
+.height-240{
+    height:240px;
+}
+.height-260{
+    height:260px;
+}
+
+    //生成height
+.generate-height(10,1);
+
+.generate-height(@n, @i: 1) when (@i =< @n) {
+  @c:@i*100;
+  .height-@{c} {
+    height: (@i * 100px );
+  }
+  .generate-height(@n, (@i + 1));
+}
+
+//生成pd
+.pd-5{
+    padding:5px;
+}
+.generate-pd(8,1);
+
+.generate-pd(@n, @i: 1) when (@i =< @n) {
+  @c:@i*5;
+    .pd-@{c} {
+    padding: (@i * 5px );
+  }
+  .generate-pd(@n, (@i + 1));
+}
+
+//生成pd-lf
+.generate-pd-lf(8,1);
+.generate-pd-lf(@n, @i: 1) when (@i =< @n) {
+  @c:@i*5;
+    .pd-lf-@{c} {
+    padding-left: (@i * 5px );
+  }
+  .generate-pd-lf(@n, (@i + 1));
+}
+
+    //生成pd-lf
+.generate-pd-rt(8,1);
+.generate-pd-rt(@n, @i: 1) when (@i =< @n) {
+  @c:@i*5;
+    .pd-rt-@{c} {
+    padding-right: (@i * 5px );
+  }
+  .generate-pd-rt(@n, (@i + 1));
+}
+
+    //生成pd-top
+.generate-pd-top(8,1);
+.generate-pd-top(@n, @i: 1) when (@i =< @n) {
+  @c:@i*5;
+    .pd-top-@{c} {
+    padding-top: (@i * 5px );
+  }
+  .generate-pd-top(@n, (@i + 1));
+}
+
+
+
+
+
+
+
+.pd-btn-15{
+    padding-bottom:15px;
+}
+.pd-btn-20{
+    padding-bottom:20px;
+}
+
+.pd-topbtn-10{
+    padding-top:10px;padding-bottom:10px;
+}
+
+.pd-topbtn-50{
+    padding-top:50px;padding-bottom:50px;
+}
+
+
+
+ //生成pd-top
+.generate-marg-top(16,1);
+.generate-marg-top(@n, @i: 1) when (@i =< @n) {
+  @c:@i*5;
+    .marg-top-@{c} {
+        margin-top: (@i * 5px );
+    }
+  .generate-marg-top(@n, (@i + 1));
+}
+
+.marg-auto{
+    margin-left:auto;margin-right:auto;
+}
+
+.marg-lf-10{
+    margin-left:10px;
+}
+
+.marg-lf-25{
+    margin-left:25px;
+}
+
+.marg-rt-0{
+    margin-right:0px !important;
+}
+.marg-rt-10{
+    margin-right:10px;
+}
+

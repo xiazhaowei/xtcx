@@ -1,0 +1,107 @@
+﻿@model IQueryable<xtcx.ViewModel.OrgViewModel>
+@{
+    ViewBag.Title = "机构管理";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.Partial("_SideBar1")
+
+<div id="page-wrapper">
+    <div class="row">
+        <ol class="breadcrumb row">
+            <li><a class="cx-fontgreen" href="/home"><span class="glyphicon glyphicon-home"></span> 首页</a></li>
+            <li><a class="cx-fontgreen" href="#"> 案例库管理</a></li>           
+        </ol>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-green">
+                <div class="panel-heading">
+                    机构列表
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables">
+                        <thead>
+                            <tr>
+                                <th width="150">中心名称</th>                                
+                                <th>面向科学前沿</th>
+                                <th>面向行业</th>
+                                <th>面相区域发展</th>
+                                <th>面向文化传承</th>
+                                <th width="110">案例/政策/绩效</th>
+                                <th width="80">审核状态</th>
+                                <th width="200">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr class="odd gradeX">
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Name)
+                                        <p><a target="_blank" href="http://@Html.DisplayFor(modelItem => item.Url)">@Html.DisplayFor(modelItem => item.Url)</a></p>
+                                    </td>                                    
+                                    <td>@Html.DisplayFor(modelItem => item.ScienceDesc)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.IndustryDesc)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.DomainDesc)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.CultureDesc)</td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CaseCount)/
+                                        @Html.DisplayFor(modelItem => item.PolicyCount)/
+                                        @Html.DisplayFor(modelItem => item.PerformanceCount)
+                                    </td>
+                                    <td>@Html.DisplayFor(modelItem => item.State)</td>
+                                    <td class="text-center">
+                                        <a href="/organization/setstatepass/@item.Id">审核通过</a> | <a href="/organization/setstateunpass/@item.Id">审核不通过</a> | <a href="/organization/add/@item.Id">修改</a> | <a href="/organization/del/@item.Id">删除</a>
+                                    </td>
+                                </tr>
+                            }
+                            
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+
+</div>
+
+
+@section scripts
+{
+    <script>
+    $(document).ready(function() {
+        $('#dataTables').DataTable({
+            language: {
+                "sProcessing": "处理中...",
+                "sLengthMenu": "显示 _MENU_ 项结果",
+                "sZeroRecords": "没有匹配结果",
+                "sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+                "sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
+                "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+                "sInfoPostFix": "",
+                "sSearch": "搜索:",
+                "sUrl": "",
+                "sEmptyTable": "表中数据为空",
+                "sLoadingRecords": "载入中...",
+                "sInfoThousands": ",",
+                "oPaginate": {
+                    "sFirst": "首页",
+                    "sPrevious": "上页",
+                    "sNext": "下页",
+                    "sLast": "末页"
+                }
+            },
+            "responsive": true,
+            "paging": true,
+            "ordering": true,
+            "info": false,
+            "searching": true
+        });
+    });
+    </script>
+}

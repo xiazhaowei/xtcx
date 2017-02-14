@@ -1,0 +1,41 @@
+﻿@using xtcx.Models
+@model IEnumerable<Organization>
+@{
+    ViewBag.Title = "我的资料";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@Html.Partial("_SideBar1")
+
+<div id="page-wrapper" class="cx-pdtop-50">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">我录入的资料<a href="/organization/add" class="btn btn-success text-center pull-right">添加新的中心</a></h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-lg-4">
+                <div class="panel panel-green">
+                    <div class="panel-heading">
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </div>
+                    <div class="panel-body cx-panel-body">
+                        <p>@Html.DisplayFor(modelItem => item.Description)</p>
+                    </div>
+                    <a href="/organization/add/@item.Id">
+                        <div class="panel-footer text-center">
+                            点击修改
+                        </div>
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+

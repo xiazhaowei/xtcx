@@ -1,0 +1,152 @@
+﻿@model xtcx.ViewModel.MemberViewModel
+@{
+    ViewBag.Title = "个人资料";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Html.Partial("_SideBar1")
+
+<div id="page-wrapper" class="cx-pdtop-50">
+    <div class="row cx-pdtop-50">
+        <div class="col-lg-6 col-md-6">
+            <div class="panel panel-green">
+                <div class="panel-heading">
+                    修改账户信息
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12">
+                            @using (Html.BeginForm("Index", "Account", FormMethod.Post, new { role = "form" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                if (!ViewData.ModelState.IsValid)
+                                {
+                                    <div class="alert alert-danger">
+                                        @Html.ValidationSummary()
+                                    </div>
+                                }
+                                if (ViewBag.ActionMessage != null)
+                                {
+                                    <div class="alert alert-success">
+                                        @ViewBag.ActionMessage
+                                    </div>
+                                }
+
+                                <div class="form-group">
+                                    <label class="cx-form-font cx-pdtop-5">您的账号：</label>                                   
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control",@readonly="readonly", type = "email", maxlength = "30" , placeholder = "请输入邮箱地址" })
+                                </div>
+                                <div class="form-group">
+                                    <label class="cx-form-font cx-pdtop-5">您的姓名：</label>                                   
+                                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control", maxlength = "30", placeholder = "输入姓名" })
+                                </div>
+                                <div class="form-group">
+                                    <label class="cx-form-font cx-pdtop-5">联系方式：</label>
+                                    @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", maxlength = "30", placeholder = "输入联系方式" })
+                                </div>
+                                <div class="form-group">
+                                    <label class="cx-form-font cx-pdtop-5">工作单位：</label>
+                                    @Html.TextBoxFor(m => m.WorkingPlace, new { @class = "form-control", maxlength = "30", placeholder = "输入工作单位" })
+                                </div>
+                                <div class="form-group">
+                                    <label class="cx-form-font cx-pdtop-5">详细地址：</label>                                   
+                                    @Html.TextAreaFor(m => m.Address, new { @class = "form-control", maxlength = "30", placeholder = "输入详细地址" })
+                                </div>
+
+                                <div class="cx-pdtop-65"><button type="submit" class="btn btn-success text-center pull-right">确认修改信息</button></div>
+
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer cx-pdtop-20">
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6">
+            <div class="panel panel-green">
+                <div class="panel-heading">
+                    修改密码
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12">
+                            <form id="updatepasswordform" role="form" action="/account/updatepassword" method="post">
+                                <div class="form-group">
+                                    <label class="cx-form-font cx-pdtop-5">您的旧密码：</label>
+                                    <input name="OldPassword" class="form-control cx-form pull-right" type="password" placeholder="您的旧密码" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="cx-form-font cx-pdtop-5">您的新密码：</label>
+                                    <input name="Password" class="form-control cx-form pull-right" type="password" placeholder="您的新密码" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="cx-form-font cx-pdtop-5">确认新密码：</label>
+                                    <input name="ConfirmPassword" class="form-control cx-form pull-right" type="password" placeholder="确认新密码" />
+                                </div>
+                                <div class="cx-pdtop-40"><button type="submit" class="btn btn-success text-center pull-right">确认修改密码</button></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer cx-pdtop-20">
+                </div>
+            </div>
+        </div>
+    </div>
+    @*<div class="row">
+        <div class="col-lg-12 col-md-12">
+            <div class="panel panel-green">
+                <div class="panel-heading">下载过的资料</div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12">
+                            <form role="form">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered table-hover cx-downlist-table">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>名称</th>
+                                                <th>简介</th>
+                                                <th>操作</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td><div>XXXXXXX事大撒是的阿桑大事大大事大撒XXXXX</div></td>
+                                                <td>
+                                                    <div class="cx-textindent">
+                                                        阿桑大事大撒是的阿桑大事事大大事大撒是的阿大撒是的阿桑大事事大大事大撒是的大撒是的阿桑大事事大大事大撒是的桑大事大撒撒是的
+                                                        阿桑大事大撒是的阿桑大事事大大事大撒是的阿大撒是的阿桑大事事大大事大撒是的大撒是的阿桑大事事大大事大撒是的桑大事大撒撒是的
+                                                    </div>
+                                                </td>
+                                                <td><a href="#">下载</a>  |  <a href="#">删除</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td>Jacob</td>
+                                                <td><div class="cx-textindent">阿桑大事大撒是的阿桑大事事大大事大撒是的阿桑大事大撒撒是的</div></td>
+                                                <td>fat</td>
+                                            </tr>
+                                            <tr>
+                                                <td>3</td>
+                                                <td>Larry</td>
+                                                <td><div class="cx-textindent">阿桑大事大撒是的阿桑大事事大大事大撒是的阿桑大事大撒撒是的</div></td>
+                                                <td>twitter</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer cx-pdtop-20">
+                </div>
+            </div>
+        </div>
+    </div>*@
+</div>
+

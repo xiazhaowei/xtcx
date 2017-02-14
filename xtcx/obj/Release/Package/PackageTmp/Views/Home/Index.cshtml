@@ -1,0 +1,101 @@
+﻿@model xtcx.ViewModel.HomeViewModel
+@{
+    ViewBag.Title = "首页";
+}
+
+@Html.Partial("_SideBar1")
+
+
+
+<div id="page-wrapper" class="cx-pdtop-50">
+    <div class="row">
+        <ol class="breadcrumb row">
+            <li><a class="cx-fontgreen" href="/home"><span class="glyphicon glyphicon-home"></span> 首页</a></li>
+        </ol>
+    </div>
+    
+
+    <div class="row cx-pdtop-10">
+        <div class="col-lg-12">
+            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                </ol>
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active">
+                        <img src="/content/img/1.jpg" alt="上海交通大学">
+                    </div>
+                    <div class="item">
+                        <img src="/content/img/2.jpg" alt="...">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">协同创新中心简介</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12 col-md-12 cx-pdbottom-20">
+            <p class="cx-fontgrey cx-textindent">
+                
+            </p>
+        </div>
+        <div class="col-lg-6 col-md-6">
+            <div class="panel panel-green">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-institution fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">@Model.OrgCount</div>
+                            <div>现有中心</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="organization">
+                    <div class="panel-footer">
+                        <span class="pull-left">查看更多中心信息</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6">
+            <div class="panel panel-green">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-group fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">@Model.ZhuanjiaCount</div>
+                            <div>现有专家</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="#" data-toggle="modal" data-target=".bs-example-modal-sm">
+                    <div class="panel-footer">
+                        <span class="pull-left">查看更多专家信息</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+

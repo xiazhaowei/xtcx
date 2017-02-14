@@ -1,0 +1,48 @@
+﻿@using xtcx.Models
+
+<div class="navbar-default sidebar cx-sidebar" role="navigation">
+    <div class="sidebar-nav navbar-collapse">
+        <ul class="nav" id="side-menu">
+            <li class="sidebar-search">
+                <div class="input-group custom-search-form">
+                    <input type="text" class="form-control" placeholder="搜索.....">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
+                </div>
+                <!-- /input-group -->
+            </li>
+            <li>
+                <a href="/home"><i class="fa fa-home fa-fw"></i> 首页</a>
+            </li>
+            <li>
+                <a href="/organization"><i class="fa fa-sitemap fa-fw"></i> 案例库</a>
+            </li>
+            <li>
+                <a href="#" data-toggle="modal" data-target=".bs-example-modal-sm"><i class="fa fa-users fa-fw"></i> 专家库</a>
+            </li>
+        </ul>
+        
+        @if (User.Identity.IsAuthenticated && ViewBag.MyAccount.Type== 会员角色.管理员.ToString())
+        {
+             <h4>管理菜单</h4>
+            <ul class="nav" id="side-menu" style="border-top:1px solid #E7E7E7;">
+                <li>
+                    <a href="/account/MemberMgr"><i class="fa fa-user fa-fw"></i> 用户管理</a>
+                </li>
+                <li>
+                    <a href="/organization/OrganizationMgr"><i class="fa fa-user fa-fw"></i> 案例库管理</a>
+                </li>
+                <li>
+                    <a href="/organization/UnPassFileList"><i class="fa fa-user fa-fw"></i> 待审核资料</a>
+                </li> 
+            </ul>
+        }
+                
+
+    </div>
+    <!-- /.sidebar-collapse -->
+</div>
+<!-- /.navbar-static-side -->

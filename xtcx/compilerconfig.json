@@ -1,0 +1,14 @@
+﻿[
+  {
+    "outputFile": "Content/Admin.css",
+    "inputFile": "Content/Admin.less"
+  },
+  {
+    "outputFile": "Content/Site.css",
+    "inputFile": "Content/Site.less"
+  },
+  {
+    "outputFile": "Content/css/mixins.css",
+    "inputFile": "Content/css/mixins.less"
+  }
+]
